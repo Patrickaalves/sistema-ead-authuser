@@ -14,4 +14,7 @@ public interface UserService {
     UserModel registerUser(UserRecordDto userRecordDto);
     boolean existByUsername(String username);
     boolean existByEmail(String email);
+    UserModel updateUser(UserRecordDto userRecordDto, UserModel userModel);
+    UserModel updatePassword(UserRecordDto userRecordDto, UserModel userModel);
+    UserModel updateImage(UserRecordDto userRecordDto, UserModel userModel);
 }
