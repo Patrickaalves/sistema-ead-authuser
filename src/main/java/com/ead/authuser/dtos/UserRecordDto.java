@@ -35,7 +35,7 @@ public record UserRecordDto(@NotBlank(groups = UserView.RegistrationPost.class, 
                             @JsonView({UserView.RegistrationPost.class, UserView.UserPut.class})
                             String phoneNumber,
 
-                            @NotBlank(groups = UserView.ImagePut.class, message = "Imaage URL is mandatory")
+                            @NotBlank(groups = UserView.ImagePut.class, message = "Image URL is mandatory")
                             @JsonView(UserView.ImagePut.class)
                             String imageUrl) {
 

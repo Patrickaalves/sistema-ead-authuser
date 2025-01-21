@@ -18,6 +18,6 @@ public @interface PasswordConstraint {
             Latin character [A-Z], at least one special character like !@#&()-:;',?/*~$^+=<>,
             A length od at least 6 characters and a maximun of 20 characters """;
 
-    Class<?> [] groups() default {}; // Um array de classes
+    Class<?>[] groups() default {}; // Um array de classes
     Class<? extends Payload>[] payload() default {}; // Um array de classes que extendem a classe Payload
 }
