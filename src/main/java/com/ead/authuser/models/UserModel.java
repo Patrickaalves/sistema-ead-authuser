@@ -158,4 +158,6 @@ public class UserModel extends RepresentationModel<UserModel> implements Seriali
     public void setUserCourses(Set<UserCourseModel> userCourses) {
         this.userCourses = userCourses;
     }
+
+
 }
