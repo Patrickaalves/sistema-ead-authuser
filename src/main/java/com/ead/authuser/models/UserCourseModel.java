@@ -10,7 +10,16 @@ import java.util.UUID;
 @Entity
 @Table(name = "TB_USERS_COURSES")
 public class UserCourseModel implements Serializable {
+
     private static final long serialVersionUID = 1L;
+
+    public UserCourseModel() {}
+
+    public UserCourseModel(UUID id, UUID courseId, UserModel user) {
+        this.id = id;
+        this.courseId = courseId;
+        this.user = user;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
