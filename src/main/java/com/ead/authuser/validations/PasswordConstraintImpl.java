@@ -1,6 +1,5 @@
-package com.ead.authuser.validations.impl;
+package com.ead.authuser.validations;
 
-import com.ead.authuser.validations.PasswordConstraint;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
