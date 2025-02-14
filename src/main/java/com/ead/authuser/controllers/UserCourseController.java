@@ -37,13 +37,13 @@ public class UserCourseController {
     @GetMapping("/users/{userId}/courses")
     public ResponseEntity<Page<CourseRecordDto>> getAllCoursesByUser(@PageableDefault(sort = "courseId", direction = Sort.Direction.ASC) Pageable page,
                                                                      @PathVariable(value = "userId") UUID userId) {
+        userService.findById(userId);
         return ResponseEntity.status(HttpStatus.OK).body(courseClient.getAllCoursesByUser(userId, page));
     }
 
     @PostMapping("/users/{userId}/courses/subscription")
     public ResponseEntity<Object> saveSubscriptionUserInCourse(@PathVariable(value = "userId") UUID userId,
                                                                @RequestBody @Valid UserCourseRecordDto userCourseRecordDto) {
-
         Optional<UserModel> userModelOptional = userService.findById(userId);
         if (userCourseService.existByUserAndCourseId(userModelOptional.get(), userCourseRecordDto.courseId())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Error: Subscription already exists!");
@@ -53,5 +53,14 @@ public class UserCourseController {
                 userCourseService.save(userModelOptional.get().convertToUserCourseModel(userCourseRecordDto.courseId()));
 
         return ResponseEntity.status(HttpStatus.CREATED).body(userCourseModel);
+    }
+
+    @DeleteMapping("/users/courses/{courseId}")
+    public ResponseEntity<Object> deleteUserCourseByCourse(@PathVariable(value = "courseId") UUID courseId) {
+        if (!userCourseService.existsByCourseId(courseId)) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: User course not found!");
+        }
+        userCourseService.deleteAllByCourseId(courseId);
+        return ResponseEntity.status(HttpStatus.OK).body("UserCourse deleted successfully!");
     }
 }
